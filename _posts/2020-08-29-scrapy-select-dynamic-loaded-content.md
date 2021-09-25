@@ -69,7 +69,7 @@ excerpt: 使用 Scrapy 提取动态加载的内容
   如果需要的数据是嵌入在 JSON 中的 HTML 或 XML 代码，你可以将它们加载到`selector`中并像通常一样使用它：
   `selector = Selector(data['html'])`
 - 如果响应是 JavaScipt ，或者包含有需要数据的`<script>`元素的 HTML ，参见 [分析JavaScript代码](#分析javascript代码) 。
-- 如果响应是 CSS ，使用 [正则表达式](https://docs.python.org/3/library/re.html)从`response.text`中提取需要的数据。
+- 如果响应是 CSS ，使用 [正则表达式](https://docs.python.org/3/library/re.html) 从`response.text`中提取需要的数据。
 - 如果响应是图像或者其他基于图像的格式（例如PDF）,从`response.body`中以字节的形式读取响应并使用 OCR 以文本的方式提取需要的数据。
   例如，你可以使用 [pytesseract](https://github.com/madmaze/pytesseract) 。要从 PDF 中读取表格，[tabula-py](https://github.com/chezou/tabula-py) 也许是更好的选择。
 - 如果响应是 SVG ，或者包含有需要数据的嵌入 SVG 的 HTML，你可以使用 [selectors](https://docs.scrapy.org/en/latest/topics/selectors.html#topics-selectors) 提取需要的数据，因为 SVG 是基于 XML 的。
