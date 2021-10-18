@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Docker 安装指南
+title: 安装指南
 description: install docker on windows and ubuntu
+category: Docker
 date: 2021-06-14 09:09:08 +0800
-excerpt: 在 Windows 开发机和 Ubuntu 服务器上安装 Docker
+excerpt: 在 Windows 中使用 WSL 安装 Docker Desktop，在 Ubuntu 中安装 Docker Engine 和 Docker Compose
 ---
 
 ## 在 Windows 上安装 Docker
@@ -64,7 +65,7 @@ echo \
 
 `sudo apt-get update`
 
-安装最新版本的 Docker Engine和 containerd ：
+安装最新版本的 Docker Engine 和 containerd ：
 
 `sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
@@ -86,11 +87,13 @@ echo \
 
 验证安装：
  
-```
+```shell
 ~$ docker-compose --version
 docker-compose version 1.17.0, build ac53b73
 ```
 
-- [Install Docker Desktop on Windows](https://docs.docker.com/docker-for-windows/install/)
-- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-- [Install Docker Compose](https://docs.docker.com/compose/install/)
+&nbsp;
+
+- [1] [Install Docker Desktop on Windows](https://docs.docker.com/docker-for-windows/install/)
+- [2] [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [3] [Install Docker Compose](https://docs.docker.com/compose/install/)

@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Spring Boot 全局异常处理
-description: enum http status code, define result and handle exception glabally to unifom response in spring boot
+title: 全局异常处理
+description: use controlleradvice to handle exception glabally in spring boot
+category: SpringBoot
 date: 2021-05-06 20:53:41 +0800
-excerpt: 定义状态码、返回结果，全局处理异常以统一返回结果
+excerpt: 使用 ControllerAdvice 进行全局异常处理
 ---
 
 ## 定义状态码
 
 Code.java
 
-```
+```java
 package com.comp2024b.tocountornot.util;
 
 public enum Code {
@@ -39,7 +40,7 @@ public enum Code {
 
 Result.java
 
-```
+```java
 package com.comp2024b.tocountornot.util;
 
 import lombok.Data;
@@ -73,7 +74,7 @@ public class Result {
 
 ResultFactory.java
 
-```
+```java
 package com.comp2024b.tocountornot.util;
 
 public static Result getNotFoundResult(String message) {
@@ -87,7 +88,7 @@ public static Result getNotFoundResult(String message) {
 
 NotFoundException.java
 
-```
+```java
 package com.comp2024b.tocountornot.exception;
 
 public class NotFoundException extends RuntimeException {
@@ -101,7 +102,7 @@ public class NotFoundException extends RuntimeException {
 
 GlobalExceptionHandler.java
 
-```
+```java
 package com.comp2024b.tocountornot.exception;
 
 import com.comp2024b.tocountornot.util.Result;
@@ -122,7 +123,7 @@ public class GlobalExceptionHandler {
 
 在用户请求的资源不存在时，我们可以抛出异常并给出提示信息：
 
-```
+```java
 Card card = cardMapper.getCardById(id, uid);
 if (card != null) {
     return card;
@@ -133,11 +134,13 @@ if (card != null) {
 
 全局异常处理会捕获这个异常并返回处理后的结果：
 
-```
+```json
 {
     "code": 404,
     "message": "card not found",
 }
 ```
 
-- [Spring Boot 异常处理的几种方式](https://snailclimb.gitee.io/springboot-guide/#/./docs/advanced/springboot-handle-exception)
+&nbsp;
+
+- [1] [Spring Boot 异常处理的几种方式](https://snailclimb.gitee.io/springboot-guide/#/./docs/advanced/springboot-handle-exception)

@@ -1,7 +1,9 @@
 ---
 layout: post
-title: J2EE 数据库连接
+title: 数据库连接
 description: connect to mysql database by jdbc
+category: J2EE
+tags: java mysql jdbc
 date: 2021-04-28 19:07:03 +0800
 excerpt: 使用 JDBC 连接到 MySQL 数据库
 ---

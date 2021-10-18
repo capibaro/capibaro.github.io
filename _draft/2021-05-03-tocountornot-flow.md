@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 爱记不记 流水
+title: 流水
 description: tocountornot flow api document
+category: to-count-or-not
+tag: document
 date: 2021-05-03 15:41:32 +0800
 excerpt: 爱记不记流水接口文档
 ---

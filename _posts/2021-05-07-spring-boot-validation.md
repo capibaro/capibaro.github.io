@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Spring Boot 参数校验
-description: use hibernate validation to validate parameter input in spring boot
+title: 参数校验
+description: use hibernate validation to validate  parameter in spring boot
+category: SpringBoot
 date: 2021-05-07 18:53:45 +0800
-excerpt: 使用 spring-boot-starter-validation 进行参数校验
+excerpt: 使用 Hibernate Validation 进行入参校验
 ---
 
 ## 引入依赖
 
 在`pom.xml`中添加`spring-boot-starter-validation`的依赖
 
-```
+```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-validation</artifactId>
@@ -21,7 +22,7 @@ excerpt: 使用 spring-boot-starter-validation 进行参数校验
 
 在我们需要验证的请求体前加上`@Valid`注解：
 
-```
+```java
 public Result insertCard(@Valid @RequestBody Card card) {
     cardService.insertCard(card);
     return ResultFactory.getCreatedResult(card.getId());
@@ -30,7 +31,7 @@ public Result insertCard(@Valid @RequestBody Card card) {
 
 在对应的类定义中给出校验条件：
 
-```
+```java
 package com.comp2024b.tocountornot.bean;
 
 import lombok.Data;
@@ -52,7 +53,7 @@ public class Card {
 
 `@NotBlank`注解用于字符串，表示字符串不能为 null ，长度不能为0且不能全由空格组成。`@Size`注解用于验证对象的大小，这里使用`max`限制字符串长不能超过20。如果参数不符合要求，会抛出`MethodArgumentNotValidException`异常，可以使用`message`给出异常信息。通常我们会在全局异常处理中捕获这个异常：
 
-```
+```java
 @ExceptionHandler(value = MethodArgumentNotValidException.class)
 public Result MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException mae) {
     return ResultFactory.getBadRequestResult(mae.getBindingResult().getFieldError().getDefaultMessage());
@@ -61,7 +62,7 @@ public Result MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidExcep
 
 并在处理异常后返回相应的结果：
 
-```
+```json
 {
     "code": 400,
     "message": "name cannot be blank",
@@ -103,4 +104,6 @@ public Result MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidExcep
 
 如果没有你需要的注解，你还可以通过实现`ConstraintValidator`接口并重写`isValid()`方法自定义注解。
 
-- [如何在 Spring/Spring Boot 中优雅地做参数校验？](https://snailclimb.gitee.io/springboot-guide/#/./docs/spring-bean-validation)
+&nbsp;
+
+- [1] [如何在 Spring/Spring Boot 中优雅地做参数校验？](https://snailclimb.gitee.io/springboot-guide/#/./docs/spring-bean-validation)

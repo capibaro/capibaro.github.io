@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 爱记不记 成员
+title: 成员
 description: tocountornot member api document
+category: to-count-or-not
+tag: document
 date: 2021-05-03 16:25:18 +0800
 excerpt: 爱记不记成员接口文档
 ---

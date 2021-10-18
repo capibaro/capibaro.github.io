@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Spring Boot 接口调用日志
+title: 接口调用日志
 description: use interceptor to generate api invoke journal in spring boot
+category: SpringBoot
 date: 2021-05-08 20:53:58 +0800
-excerpt: 使用拦截器生成接口调用日志
+excerpt: 使用 Interceptor 生成接口调用日志
 ---
 
 在 Spring 中，请求在被控制器处理之前需要经过拦截器的处理。因此，我们可以使用拦截器来生成接口调用日志。
@@ -14,7 +15,7 @@ excerpt: 使用拦截器生成接口调用日志
 
 LogInterceptor.java
 
-```
+```java
 package com.comp2024b.tocountornot.interceptor;
 
 import com.comp2024b.tocountornot.ToCountOrNotApplication;
@@ -65,7 +66,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
 InterceptorConfig.java
 
-```
+```java
 package com.comp2024b.tocountornot.interceptor;
 
 import org.springframework.context.annotation.Bean;
@@ -91,4 +92,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
 `0:0:0:0:0:0:0:1 GET /cards handled in 97ms`
 
-- [SpringBoot 实现拦截器](https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor)
+&nbsp;
+
+- [1] [SpringBoot 实现拦截器](https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor)

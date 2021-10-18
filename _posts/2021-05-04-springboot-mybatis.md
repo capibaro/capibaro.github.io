@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Spring Boot 对象关系映射
+title: 对象关系映射
 description: use mybatis to implement object relation mapping in spring boot
+category: SpringBoot
 date: 2021-05-04 19:25:25 +0800
-excerpt: 使用 MyBatis 完成对象关系映射
+excerpt: 使用 MyBatis 和 Java 注解完成对象关系映射
 ---
 
 MyBatis 是一个支持自定义 SQL 、存储过程和高级映射的持久层框架，它使用 [XML](https://developer.mozilla.org/zh-CN/docs/Web/XML/XML_introduction) 或者 [注解](https://www.runoob.com/w3cnote/java-annotation.html) 配置对象与关系之间的映射，免除了几乎所有设置参数和获取结果的 [JDBC](https://www.oracle.com/cn/database/technologies/appdev/jdbc.html) 代码。
@@ -12,7 +13,7 @@ MyBatis 是一个支持自定义 SQL 、存储过程和高级映射的持久层�
 
 在`pom.xml`中添加 MyBatis 的依赖：
 
-```
+```xml
 <dependency>
     <groupId>org.mybatis.spring.boot</groupId>
     <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -22,7 +23,7 @@ MyBatis 是一个支持自定义 SQL 、存储过程和高级映射的持久层�
 
 因为这里使用 MySQL 数据库，所以还需添加数据库驱动的依赖
 
-```
+```xml
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -34,7 +35,7 @@ MyBatis 是一个支持自定义 SQL 、存储过程和高级映射的持久层�
 
 在`application.yml`中配置数据库连接：
 
-```
+```yaml
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/bookkeeping?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
@@ -47,7 +48,7 @@ spring:
 
 在 MySQL 中定义数据表：
 
-```
+```sql
 create table card
 (
    c_id                 int not null auto_increment,
@@ -59,7 +60,7 @@ create table card
 
 在 Spring 中定义类：
 
-```
+```java
 package com.comp2024b.tocountornot.bean;
 
 import lombok.Data;
@@ -80,7 +81,7 @@ public class Card {
 
 CardMapper.java
 
-```
+```java
 package com.comp2024b.tocountornot.dao;
 
 import com.comp2024b.tocountornot.bean.Card;
@@ -122,7 +123,7 @@ public interface CardMapper {
 
 CardMapper.xml
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -140,7 +141,7 @@ CardMapper.xml
 
 每一个基于 MyBatis 的应用都以一个`SqlSessionFactory`的实例为核心。`SqlSessionFactory`的实例可以由`SqlSessionFactoryBuilder`根据配置文件构建得到，在这里`application.yml`提供了需要的数据源配置信息。我们可以从`SqlSessionFactory`获取`SqlSession`的实例，然后通过`SqlSession`实例执行已映射的 SQL 语句：
 
-```
+```java
 try (SqlSession session = sqlSessionFactory.openSession()) {
     CardMapper mapper = session.getMapper(CardMapper.class);
     Card Card = mapper.getCardById(1, 1);
@@ -151,7 +152,7 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
 
 CardService.java
 
-```
+```java
 package com.comp2024b.tocountornot.service;
 
 import com.comp2024b.tocountornot.dao.CardMapper;
@@ -181,4 +182,6 @@ public class CardService {
 
 这里我们使用`@Service`注解把 CardService 注册为需要 Spring 管理的服务层组件。
 
-- [mybatis – MyBatis 3 入门](https://mybatis.org/mybatis-3/zh/getting-started.html)
+&nbsp;
+
+- [1] [mybatis – MyBatis 3 入门](https://mybatis.org/mybatis-3/zh/getting-started.html)

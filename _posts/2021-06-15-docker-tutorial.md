@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Docker 基础教程
-description: use docker to run a mysql service and a elasticsearch service
+title: 基础教程
+description: run mysql, elasticsearch service in docker
+category: Docker
 date: 2021-06-16 19:59:50 +0800
-excerpt: 使用 Docker 运行 MySQL 和 Elasticsearch 的服务
+excerpt: 使用 Docker 运行 MySQL，Elasticsearch 服务
 ---
 
 ## MySQL
@@ -18,7 +19,7 @@ excerpt: 使用 Docker 运行 MySQL 和 Elasticsearch 的服务
 
 `stack.yml`
 
-```
+```yaml
 version: '3.1'
 
 services:
@@ -57,5 +58,7 @@ services:
 
 其中选项`--net`指定了容器所属的网络，选项`-p`指定了服务运行的端口。容器初始化完成后可以访问`http://localhost:9200/?pretty`或者使用命令`curl http://localhost:9200/?pretty`进行验证。
 
-- [mysql](https://hub.docker.com/_/mysql)
-- [elasticsearch](https://hub.docker.com/_/elasticsearch)
+&nbsp;
+
+- [1] [mysql](https://hub.docker.com/_/mysql)
+- [2] [elasticsearch](https://hub.docker.com/_/elasticsearch)

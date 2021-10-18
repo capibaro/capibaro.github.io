@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Docker 部署应用
-description: use docker-compose to deploy django application
+title: 部署应用程序
+description: deploy django application by docker-compose
+category: Docker
 date: 2021-06-17 21:33:37 +0800
-excerpt: 使用 docker-compose 部署 Django 应用程序
+excerpt: 使用 Docker Compose 部署 Django 应用程序
 ---
 
 ## 编写 docker-compose 文件
@@ -12,7 +13,7 @@ excerpt: 使用 docker-compose 部署 Django 应用程序
 
 ### 数据库
 
-```
+```yaml
 version: '3.3'
 
 services:
@@ -53,7 +54,7 @@ volumes:
 
 ### 应用服务器
 
-```
+```yaml
 version: '3.3'
 
 services:
@@ -87,7 +88,7 @@ services:
 
 ### Web 服务器
 
-```
+```nginx
 upstream web {
     ip_hash;
     server web:8000;
@@ -105,7 +106,7 @@ server {
 
 在`nginx`目录下编写 Nginx 配置文件`nginx.conf`并使用数据卷映射到容器的 Nginx 配置文件中。
 
-```
+```yaml
 version: '3.3'
 
 services:
@@ -125,5 +126,7 @@ services:
 
 因为 Docker 容器会在前台进程执行完毕后退出，所以这里需要使用命令`nginx -g 'daemon off;'`在前台运行 Nginx。
 
-- [Quickstart: Compose and Django](https://docs.docker.com/samples/django/)
-- [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
+&nbsp;
+
+- [1] [Quickstart: Compose and Django](https://docs.docker.com/samples/django/)
+- [2] [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)

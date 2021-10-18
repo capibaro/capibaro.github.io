@@ -1,7 +1,9 @@
 ---
 layout: post
-title: J2EE 基础教程
+title: 基础教程
 description: a tutorial on servlet and jsp
+category: J2EE
+tags: java servlet jsp
 date: 2021-04-27 18:31:51 +0800
 excerpt: 创建一个简单的 J2EE 项目
 ---

@@ -1,28 +1,27 @@
 ---
 layout: post
-title: Spring Boot 身份认证
-description: use interceptor, jwt to implement authentication in spring boot
+title: 身份认证
+description: use jwt, interceptor and annonation to implement authentication in spring boot
+category: SpringBoot
 date: 2021-05-05 20:54:28 +0800
-excerpt: 使用拦截器和 JWT 实现身份认证
+excerpt: 使用 JWT ，Interceptor 和注解实现用户身份认证
 ---
 
-JWT(Json Web Token)是一个开放的行业标准 [RFC7519](https://datatracker.ietf.org/doc/html/rfc7519) 方法，用于在双方之间安全地传递声明。
+JWT（Json Web Token）是一个开放的行业标准 [RFC7519](https://datatracker.ietf.org/doc/html/rfc7519) 方法，用于在双方之间安全地传递声明。
 
 ## JWT
 
 JWT 实际上是由两个`.`分成三个部分的字符串：
 
-```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
-SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-```
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
 
 这三个部分分别是头部、负载和签名。
 
 头部用于声明了签名算法和类型：
 
-```
+```json
 {
   "alg": "HS256",
   "typ": "JWT"
@@ -31,7 +30,7 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 负载用于携带信息。因为负载中的信息仅使用 base64 编码，所以不能用于存放敏感信息：
 
-```
+```json
 {
   "sub": "1234567890",
   "name": "John Doe",
@@ -41,7 +40,7 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 签名用于存放对头部和负载使用密钥和签名算法生成的签名，用于防止对内容的篡改：
 
-```
+```java
 HMACSHA256(
   base64UrlEncode(header) + "." +
   base64UrlEncode(payload),
@@ -53,7 +52,7 @@ HMACSHA256(
 
 在`pom.xml`中添加`java-jwt`的依赖：
 
-```
+```xml
 <dependency>
     <groupId>com.auth0</groupId>
     <artifactId>java-jwt</artifactId>
@@ -67,7 +66,7 @@ HMACSHA256(
 
 Token.java
 
-```
+```java
 package com.comp2024b.tocountornot.util;
 
 import com.auth0.jwt.JWT;
@@ -126,7 +125,7 @@ public class Token {
 
 NoTokenRequired.java
 
-```
+```java
 package com.comp2024b.tocountornot.annotation;
 
 import java.lang.annotation.ElementType;
@@ -145,7 +144,7 @@ public @interface NoTokenRequired {
 
 TokenRequired.java
 
-```
+```java
 package com.comp2024b.tocountornot.annotation;
 
 import java.lang.annotation.ElementType;
@@ -168,7 +167,7 @@ public @interface TokenRequired {
 
 UserService.java
 
-```
+```java
 public String login(User user) {
     if (ExistUser(user.getName())) {
         User u = getUserByName(user.getName());
@@ -189,7 +188,7 @@ public String login(User user) {
 
 UserController.java
 
-```
+```java
 @NoTokenRequired
 @PostMapping("user/login")
 public Result login(@Valid @RequestBody User user, HttpServletResponse response) {
@@ -205,7 +204,7 @@ public Result login(@Valid @RequestBody User user, HttpServletResponse response)
 
 要验证用户的 token，我们需要定义一个身份认证拦截器，在`preHandle()`方法中获取接口的注解并做出相应的处理。
 
-```
+```java
 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) {
     if (!(object instanceof HandlerMethod)) {
         return true;
@@ -243,4 +242,6 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 
 对于使用`TokenRequired`注解的方法，我们检查请求头是否携带 token 并验证 token 是否有效。
 
-- [JSON Web Token Introduction - jwt.io](https://jwt.io/introduction/)
+&nbsp;
+
+- [1] [JSON Web Token Introduction - jwt.io](https://jwt.io/introduction/)

@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Scrapy 基础教程
-description: a tutorial on scrapy spider
+title: 基础教程
+description: a tutorial on scrapy spider, interactive shell, data scraping, data saving and links following
+category: Scrapy
 date: 2020-08-26 19:19:52 +0800
-excerpt: 创建一个简单的爬虫项目
+excerpt: 创建一个 Scrapy 项目，编写并运行爬虫，提取并保存数据
 ---
 
 ## 创建项目
@@ -12,37 +13,33 @@ excerpt: 创建一个简单的爬虫项目
 
 `scrapy startproject showspider`
 
-这将创建一个包含如下内容的`showspider`目录：
+这行命令会创建一个名为 showspider 的目录，这个目录中包括以下内容：
 
-```
-scrapy.cfg            # 用于部署的配置文件
-
-showspider/             # 项目目录
-    __init__.py
-
-    items.py          # 提取的数据对象
-
-    middlewares.py    # 项目的中间件
-
-    pipelines.py      # 项目的流水线
-
-    settings.py       # 项目配置文件
-
-    spiders/          # 存放爬虫的目录
-        __init__.py
+```shell
+showspider
+├── scrapy.cfg          # 用于部署的配置文件
+└── showspider
+    ├── __init__.py
+    ├── items.py        # 数据模型
+    ├── middlewares.py  # 中间件
+    ├── pipelines.py    # 流水线
+    ├── settings.py     # 配置文件
+    └── spiders         # 爬虫
+        └── __init__.py
 ```
 
-`items.py`是为要提取数据对象建立的类。middleware 是为一些中间件建立的类，中间件能够处理爬虫运行中的输入输出、请求以及异常。pipeline 是为数据处理流水线建立的类，流水线能够完成对爬取数据的处理。
+- items 是提取的数据对象
+- middleware 是处理爬虫运行中的输入输出、请求和异常的中间件
+- pipeline 是用于处理数据的流水线
 
-## 创建爬虫
+## 编写爬虫
 
-Scrapy 根据你定义的爬虫从网站上提取信息。它们都必须继承`scrapy.Spider`并定义要发起的初始请求，你还可以定义如何追踪网页上的链接，如何分析下载的网页内容以提取数据。
+Scrapy 根据你对爬虫的定义从网站上提取信息。它们都必须继承`scrapy.Spider`并定义初始发起的请求。你还可以定义如何追踪网页上的链接或是如何分析下载的网页内容以提取数据。
 
-以下是我们第一个爬虫的代码，把它作为一个名为`showstart.py`的文件保存到`showspider/spiders`目录下：
+在`showspider/spiders`目录下新建名为`showstart.py`的文件并编写一个简单的爬虫：
 
-```
+```python
 import scrapy
-
 
 class ShowstartSpider(scrapy.Spider):
     name = "showstart"
@@ -58,13 +55,12 @@ class ShowstartSpider(scrapy.Spider):
         filename = 'showstart.html'
         with open(filename, 'wb') as f:
             f.write(response.body)
-        self.log(f'Saved file {filename}')
 ```
 
-如你所见，我们的爬虫继承了`scrapy.Spider`并定义了一些属性和方法：
+这个爬虫继承`scrapy.Spider`并定义了一些属性和方法：
 - `name`: 爬虫的名字
-- `start_urls`: 初始的请求，必须是可迭代的请求（请求的列表或者请求生成器）
-- `parse()`: 一个用来处理各个请求下载的响应内容的方法。`response`参数是`TextResponse`的一个实例，它包含网页的内容和一些用于处理网的有用方法。
+- `start_urls`: 初始请求，必须是可迭代的（列表或者生成器）
+- `parse()`: 处理各个请求下载的响应的方法。`response`是`TextResponse`的一个实例，它包含网页的内容和一些用于处理网页的有用方法。
 
 `parse()`方法一般用来分析响应的内容，提取数据并存入字典，追踪链接并发起新的请求。
 
@@ -72,7 +68,7 @@ class ShowstartSpider(scrapy.Spider):
 
 在项目目录下执行命令`scrapy crawl showstart`，这个命令将启动名为`showstart`的爬虫，你可以得到类似如下的输出：
 
-```
+```shell
 2021-06-13 17:35:04 [scrapy.core.engine] INFO: Spider opened
 2021-06-13 17:35:04 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
 2021-06-13 17:35:04 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
@@ -82,13 +78,13 @@ class ShowstartSpider(scrapy.Spider):
 2021-06-13 17:35:05 [scrapy.core.engine] INFO: Closing spider (finished)
 ```
 
-检查项目目录下的文件，你应该会发现爬虫下载的文件`showstart.html`，其中保存了秀动网首页的内容。
+检查项目目录，应该能看到爬虫下载的`showstart.html`，这个文件保存了秀动网的首页。
 
-## 提取数据
+## 交互式 shell
 
-下面我们在 scrapy shell 中使用选择器来提取数据。执行命令`scrapy shell "https://www.showstart.com/"`进入 scrapy shell，你可以得到类似如下的输出：
+Scrapy shell 是一个交互式 shell，可用于快速地测试提取数据的代码而无需启动爬虫。执行命令`scrapy shell "https://www.showstart.com/"`进入交互式 shell，你可以看到类似下面的输出：
 
-```
+```shell
 2021-06-13 19:16:24 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.showstart.com/> (referer: None)
 [s] Available Scrapy objects:
 [s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
@@ -105,59 +101,50 @@ class ShowstartSpider(scrapy.Spider):
 [s]   view(response)    View response in a browser
 ```
 
-在 shell 中，你可以试着使用 CSS 选择响应对象的元素：
+在 shell 中，可以使用 CSS 选择响应中的元素：
 
-```
+```python
 >>> response.css('title')
 [<Selector xpath='descendant-or-self::title' data='<title>秀动网（showstart.com） - 和热爱音乐的朋友开...'>]
 ```
 
-返回的结果是一种被称为`SelectorList`的类似于列表的对象，它是一个包括 XML/HTML 元素的`Selector`对象的列表，可用于执行进一步查询以优化选择或者提取数据。
+返回的结果被称为`SelectorList`，这是一种类似于列表的对象。它是一个包括 XML/HTML 元素的`Selector`对象列表，可用于执行进一步的查询以选择或提取数据。
 
-要提取上面 title 中的文字，你可以这样做：
+要提取 title 中的文字，可以这样做：
 
-```
+```python
 >>> response.css('title::text').getall()
 ['秀动网（showstart.com） - 和热爱音乐的朋友开启原创音乐现场之旅']
 ```
 
-我们在 CSS 查询中增加了`::text`，表明我们想要只选择`<title>`元素里的文字。如果我们不用`::text`明确说明这一点，则会得到整个 title 元素，包括它的标签：
+CSS 查询中的`::text`表示选择`<title>`中的文字。如果不用`::text`说明这一点，则会得到整个 title 元素，包括它的标签：
 
-```
+```python
 >>> response.css('title').getall()
 ['<title>秀动网（showstart.com） - 和热爱音乐的朋友开启原创音乐现场之旅</title>']
 ```
 
-调用`.getall()`返回的结果是一个列表：有可能一个选择器会返回多个结果，所以把它们全都提取出来。当你只想要第一个结果时，你可以这样做：
+调用`.getall()`返回的结果是一个列表，因为有可能一个选择器会返回多个结果，所以把它们全都提取出来。当只需要第一个结果时，可以使用`get()`：
 
-```
+```python
 >>> response.css('title::text').get()
 '秀动网（showstart.com） - 和热爱音乐的朋友开启原创音乐现场之旅'
 ```
 
-或者是：
+除了`getall()`和`get()`方法，还可以通过`re()`使用正则表达式：
 
-```
->>> response.css('title::text')[0].get()
-'秀动网（showstart.com） - 和热爱音乐的朋友开启原创音乐现场之旅'
-```
-
-但是直接在`SelectorList`实例上使用`.get()`能够避免`IndexError`并在找不到任何能匹配选择条件的元素时返回`None`。
-
-除了`getall()`和`get()`方法，你可以通过`re()`方法使用正则表达式：
-
-```
+```python
 >>> response.css('title::text').re(r'（(.+?)）')
 ['showstart.com']
 ```
 
-为了能找到合适的 CSS 选择器，你也许需要使用`view(response)`在浏览器中打开响应的页面，然后使用浏览器的开发者工具检查 HTML 并得到需要的选择器（参见[使用浏览器的开发者工具提取数据](https://docs.scrapy.org/en/latest/topics/developer-tools.html#topics-developer-tools)）。
+为了找到合适的 CSS 选择器，可以使用`view(response)`在浏览器中打开响应的页面，然后使用浏览器的开发者工具查看网页元素并得到所需的选择器。
 
-## 提取演出信息
+## 提取数据
 
-使用浏览器的检查工具，我们可以发现在 https://www.showstart.com/ 中，演出是以类似如下的 HTML 元素表示的：
+使用浏览器的开发者工具，可以发现在 https://www.showstart.com 中，演出是用类似如下的 HTML 元素表示的：
 
-```
+```html
 <a href="/event/91204" class="activity-item image-scale">
     <div class="el-image"><img
             src="https://s2.showstart.com/img/2020/20200405/af132ebd5e764a07b57c3a21b31c4832_600_800_106992.0x0.jpg?imageMogr2/thumbnail/!204x272r/gravity/Center/crop/!204x272"
@@ -169,24 +156,22 @@ class ShowstartSpider(scrapy.Spider):
 </a>
 ```
 
-接下来我们试着在 scrapy shell 中提取想要的信息：
+在 Scrapy shell 中，使用 CSS 选择器得到表示演出的 HTML 元素的选择器列表：
 
-使用下面的方法得到表示演出的 HTML 元素的选择器列表：
-
-```
+```python
 >>> response.css('a.activity-item')
 [<Selector xpath="descendant-or-self::a[@class and contains(concat(' ', normalize-space(@class), ' '), ' activity-item ')]" data='<a href="/event/91204" class="activit...'>, <Selector xpath="descendant-or-self::a[@class and contains(concat(' ', normalize-space(@class), ' '), ' activity-item ')]" data='<a href="/event/133984" class="activi...'>, ...]
 ```
 
-上面的查询返回的每一个选择器都允许我们对它们的子元素执行进一步的查询。让我们把第一个选择器赋值给一个变量，以便直接对这个特定的演出上执行 CSS 选择器：
+上面的查询中返回的每一个选择器都允许对其子元素执行进一步的查询。把第一个选择器赋值给一个变量：
 
-```
+```python
 >>> show = response.css('a.activity-item')[0]
 ```
 
-接下来，提取出`show`对象中的链接，名字和票价：
+提取出选择器中的链接，名字和票价：
 
-```
+```python
 >>> show.css('a::attr(href)').get()
 '/event/91204'
 >>> show.css('div.name::text').get()
@@ -198,11 +183,11 @@ class ShowstartSpider(scrapy.Spider):
 
 ## 在爬虫中提取数据
 
-让我们回到之前的爬虫。到目前为止，它并没有提取任何特定的数据，只是把整个 HTML 页面作为本地文件保存。现在我们把上面的提取逻辑整合到之前的爬虫中去。
+前面的爬虫并没有提取任何数据，它只是把整个 HTML 页面保存到本地。现在我们把提取数据的逻辑整合到爬虫中。
 
-Scrapy 爬虫通常生成许多字典用来保存从网页中提取的数据。为了做到这一点，我们在回调中使用`yield`关键字：
+在`parse()`方法中使用`yield`关键字以字典的形式保存数据：
 
-```
+```python
 import scrapy
 
 
@@ -225,9 +210,9 @@ class ShowstartSpider(scrapy.Spider):
             }
 ```
 
-如果你运行爬虫，它会在日志中输出提取的数据：
+运行爬虫，Scrapy 会在日志中输出提取的数据：
 
-```
+```shell
 2021-06-13 20:08:16 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.showstart.com/>
 {'href': '/event/91204', 'name': '#展览#北京奇葩减压馆·保龄球·射箭·分娩体验·蹦床·星空水床·团建·发泄·摔碗一站畅玩 ', 'price': '¥88'}
 2021-06-13 20:08:16 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.showstart.com/>
@@ -250,54 +235,54 @@ class ShowstartSpider(scrapy.Spider):
 {'href': '/event/153472', 'name': '【脱口秀专场】精品喜剧大会X北喜2021年巨制--解压狂欢｜东城爆笑专场', 'price': '¥100'}
 ```
 
-## 保存提取的数据
+## 保存数据
 
-保存提取的数据最简单的方式是使用下面的命令：
+最简单的保存数据的方式是使用下面的命令：
 
 `scrapy crawl showstart -O showstart.json`
 
-这会生成一个保存了所有提取的数据以 [JSON](https://www.json.org/json-en.html) 序列化的`showstart.json`文件。
+这个命令会以 [JSON](https://www.json.org/json-en.html) 文件的形式把提取的数据保存到`showstart.json`中。
 
-`-O`选项会覆盖已有的文件；使用`-o`则是在已有的文件中添加新的内容。但是，向 JSON 文件中添加新内容会让其违背JSON的格式，所以在已有文件中添加内容时应考虑使用其他的序列化格式，比如 [JSON Lines](http://jsonlines.org/) ：
+选项`-O`覆盖已有的文件；选项`-o`向已有文件添加新的内容。因为直接向 JSON 文件添加新的内容会违背 JSON 的格式，所以在向已有文件添加内容时应该使用另外的序列化格式，例如 [JSON Lines](http://jsonlines.org/) ：
 
 `scrapy crawl showstart -o showstart.jl`
 
 ## 追踪链接
 
-如果想要不仅仅是提取秀动网首页的演出信息，我们就需要追踪网页中的链接。
+如果希望不只提取秀动网首页的演出，就需要追踪网页中的链接。
 
-使用浏览器的检查工具我们可以发现 查看更多演出 的链接是用下面的 HTML 元素表示的
+使用浏览器的开发者工具，可以发现 查看更多演出 的链接是用下面的 HTML 元素表示的
 
-```
+```html
 <div class="more-bar">
     <a href="/event/list" class="">查看更多演出<span class="m-icon icon-arrow"></span></a>
 </div>
 ```
 
-我们可以试着在shell中提取它：
+可以试着在 shell 中提取它：
 
-```
+```python
 >>> response.css('div.more-bar a').get()
 '<a href="/event/list">查看更多演出<span class="m-icon icon-arrow"></span></a>'
 ```
 
-这样可以得到 anchor 元素，但我们需要的是属性`href`。在 Scrapy 中，我们可以使用类似如下的 CSS 扩展来选择属性的内容：
+这样可以得到 anchor 元素，但需要的是属性`href`。可以使用 CSS 扩展来选择元素属性的内容：
 
-```
+```python
 >>> response.css('div.more-bar a::attr(href)').get()
 '/event/list'
 ```
 
-也可以使用`attrib`属性：
+也可以使用`attrib`：
 
-```
+```python
 >>> response.css('div.more-bar a').attrib['href']
 '/event/list'
 ```
 
-把上面追踪链接的逻辑加入到爬虫中：
+把追踪链接的逻辑加入到爬虫中：
 
-```
+```python
 import scrapy
 
 
@@ -325,10 +310,12 @@ class ShowstartSpider(scrapy.Spider):
             yield scrapy.Request(more_page, callback=self.parse)
 ```
 
-现在，在提取数据之后，`parse()`方法查找 查看更多演出 的链接，使用`urljoin()`方法拼接出一个完整的 URL 并发起一个新的请求，并把它自己注册为处理数据提取的回调方法。
+现在，在提取数据之后，`parse()`方法还会查找 查看更多演出 的链接，然后使用`urljoin()`拼接得到完整的 URL 并发起一个新的请求。
 
-这就是 Scrapy 追踪链接的机制：当你在回调方法中发起新的请求，Scrapy 将安排发送这个请求并为其注册一个当请求结束时执行的回调方法。
+这就是 Scrapy 追踪链接的机制：当你在回调方法中发起新的请求时，Scrapy 将安排发送这个请求并注册一个回调方法以在这个请求完成时执行。
 
-使用这种方式，你可以编写按照你定义的规则追踪链接的复杂爬虫，并依据它访问的页面提取不同类型的数据。
+使用这种方式，你可以编写复杂的爬虫，根据你定义的规则追踪链接，并根据它访问的页面提取不同类型的数据。
 
-- [Scrapy Tutorial — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/intro/tutorial.html)
+&nbsp;
+
+- [1] [Scrapy Tutorial — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/intro/tutorial.html)

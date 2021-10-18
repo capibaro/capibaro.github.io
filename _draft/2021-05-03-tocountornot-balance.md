@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 爱记不记 收支统计
+title: 收支统计
 description: tocountornot balance api document
+category: to-count-or-not
+tag: document
 date: 2021-05-03 09:12:43 +0800
 excerpt: 爱记不记收支统计接口文档
 ---

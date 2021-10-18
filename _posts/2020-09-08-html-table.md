@@ -1,18 +1,19 @@
 ---
 layout: post
-title: HTML 列表、表格和表单
-description: a tutorial on html list, table, form
+title: 表
+description: a tutorial on html list, table and form
+category: HTML
 date: 2020-09-08 18:46:29 +0800
-excerpt: 介绍 HTML 中的列表、表格和表单
+excerpt: 列表、表格和表单
 ---
 
 ## （一）列表
 
 HTML 支持有序、无序和自定义列表。和其他 HTML 元素一样，列表支持嵌套。
 
-无序列表由`<ul>`标签(unordered list)定义，每个列表项由`<li>`标签(list item)定义，并在页面上使用粗体圆点进行标记。可以使用`style`属性的`list-style-type`来指定用于标记的符号，如`disc`为圆点，`circle`为圆圈，`square`为正方形。
+无序列表由`<ul>`标签（unordered list）定义，每个列表项由`<li>`标签（list item）定义，并在页面上使用粗体圆点进行标记。可以使用`style`属性的`list-style-type`来指定用于标记的符号，如`disc`为圆点，`circle`为圆圈，`square`为正方形。
 
-```
+```html
 <ul>
     <li>ck2</li>
     <li>hoi4</li>
@@ -21,9 +22,9 @@ HTML 支持有序、无序和自定义列表。和其他 HTML 元素一样，列
 </ul>
 ```
 
-有序列表由`<ol>`标签(ordered list)定义，每个列表项由`<li>`标签(list item)定义，并在页面上使用数字进行标记。可以用`type`属性指定用于标记的序号，如`A`为大写字母，`a`为小写字母，`I`为大写罗马数字，`i`为小写罗马数字。
+有序列表由`<ol>`标签（ordered list）定义，每个列表项由`<li>`标签（list item）定义，并在页面上使用数字进行标记。可以用`type`属性指定用于标记的序号，如`A`为大写字母，`a`为小写字母，`I`为大写罗马数字，`i`为小写罗马数字。
 
-```
+```html
 <ol>
     <li>ck2</li>
     <li>hoi4</li>
@@ -32,9 +33,9 @@ HTML 支持有序、无序和自定义列表。和其他 HTML 元素一样，列
 </ol>
 ```
 
-自定义列表由`<dl>`标签(definition list)定义，每个自定义列表项由`<dt>`标签(definition term)定义，每个自定义列表项的定义由`<dd>`标签(definition description)定义。
+自定义列表由`<dl>`标签（definition list）定义，每个自定义列表项由`<dt>`标签（definition term）定义，每个自定义列表项的定义由`<dd>`标签（definition description）定义。
 
-```
+```html
 <dl>
     <dt>ck2</dt>
     <dd>crusader kings 2</dd>
@@ -49,9 +50,9 @@ HTML 支持有序、无序和自定义列表。和其他 HTML 元素一样，列
 
 ## （二）表格
 
-HTML 表格由`<table>`标签定义。属性`border`定义表格的边框，如果不定义定义，表格将不显示边框。属性`cellpadding`定义单元格边距。属性`cellspacing`定义单元格间距。表格的标题由`<caption>`标题定义。表格的表头由`<th>`标签(table header cell)定义。属性`rowspan`可以指定表头的范围。表格的行由`<tr>`标签(table row)定义。每行的单元格由`<td>`标签(table data cell)定义。
+HTML 表格由`<table>`标签定义。属性`border`定义表格的边框，如果不定义定义，表格将不显示边框。属性`cellpadding`定义单元格边距。属性`cellspacing`定义单元格间距。表格的标题由`<caption>`标题定义。表格的表头由`<th>`标签（table header cell）定义。属性`rowspan`可以指定表头的范围。表格的行由`<tr>`标签（table row）定义。每行的单元格由`<td>`标签（table data cell）定义。
 
-```
+```html
 <table>
     <caption>dragon and dungeon</caption>
     <tr>
@@ -89,7 +90,7 @@ HTML 表格由`<table>`标签定义。属性`border`定义表格的边框，如�
 
 text 用于输入文本
 
-```
+```html
 <form>
     First name: <input type="text" name="firstname"><br />
     Last name: <input type="text" name="lastname">
@@ -100,7 +101,7 @@ text 用于输入文本
 
 password 用于输入密码
 
-```
+```html
 <form>
     Password: <input type="password" name="pwd">
 </form>
@@ -110,7 +111,7 @@ password 用于输入密码
 
 radio 用于表示单选框
 
-```
+```html
 <form>
     <input type="radio" name="sex" value="male">Male<br />
     <input type="radio" name="sex" value="female">Female
@@ -121,7 +122,7 @@ radio 用于表示单选框
 
 checkbox 用于表示复选框
 
-```
+```html
 <form>
     <input type="checkbox" name="candidate" value="Hillary">Crooked Hillary<br />
     <input type="checkbox" name="candidate" value="Joe">Creepy Joe
@@ -132,7 +133,7 @@ checkbox 用于表示复选框
 
 button 用于表示按钮
 
-```
+```html
 <form action="">
     <input type="button" value="Nuclear weapon">
 </form>
@@ -140,7 +141,7 @@ button 用于表示按钮
 
 submit 用于提交按钮
 
-```
+```html
 <form name="input" action="vote.jsp" method="get">
     Candidate: <input type="text" name="vote">
     <input type="submit" value="Submit">
@@ -151,7 +152,7 @@ submit 用于提交按钮
 
 可以用`<select>`标签和`<option>`标签创建下拉列表，其中`selected`属性用于指定预选值。
 
-```
+```html
 <form action="cars.jsp">
     <select name="cars">
         <option value="volvo">Volvo</option>
@@ -166,7 +167,7 @@ submit 用于提交按钮
 
 可以用`<fieldset>`标签和`<legend>`标签创建带边框的表单
 
-```
+```html
 <form action="login.jsp">
     <fieldset>
         <legend>Who are you?</legend>
@@ -176,5 +177,7 @@ submit 用于提交按钮
 </form>
 ```
 
-- [HTML 表格 入门 - 学习 Web 开发](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Tables/Basics)
-- [创建我的第一个表单 - 学习 Web 开发](https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Your_first_form)
+&nbsp;
+
+- [1] [HTML 表格 入门 - 学习 Web 开发](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Tables/Basics)
+- [2] [创建我的第一个表单 - 学习 Web 开发](https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Your_first_form)

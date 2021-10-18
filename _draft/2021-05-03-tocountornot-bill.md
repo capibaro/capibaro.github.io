@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 爱记不记 账单
+title: 账单
 description: tocountornot bill api document
+category: to-count-or-not
+tag: document
 date: 2021-05-03 10:21:41 +0800
 excerpt: 爱记不记账单接口文档
 ---

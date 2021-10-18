@@ -20,19 +20,16 @@
 
 title: 卡比巴拉的海
 author: xiangxin
-description: >- # this means to ignore newlines until "baseurl:"
+description: >
   在盒子里睡着的美梦
-url: "https://capibaro.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  capibaro
-
-paginate: 5
-permalink: /:year/:month/:day/:title
-
-# Build settings
+url: "https://www.capibaro.ink" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: capibaro
 theme: minima
 plugins:
   - jekyll-paginate
   - jekyll-seo-tag
+paginate: 5
+permalink: /:year/:month/:day/:title
 
 # Exclude from processing.
 # The following items will not be processed, by default.

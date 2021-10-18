@@ -2,17 +2,15 @@
 layout: default
 ---
 
-<!-- 遍历分页后的文章 -->
 {% for post in paginator.posts %}
-  <h7>{{ post.date | date: '%b %d, %Y' }}</h7>
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+  <h6>{{ post.date | date: '%b %d, %Y' }}</h6>
+  <h3><a href="{{ post.url }}">{{ post.category }}&nbsp{{ post.title}}</a></h3>
   <div class="excerpt">
     {{ post.excerpt }}
   </div>
   <br/>
 {% endfor %}
 
-<!-- 分页链接 -->
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
@@ -23,7 +21,7 @@ layout: default
 
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
-      <em>{{ page }}</em>
+      {{ page }}
     {% elsif page == 1 %}
       <a href="{{ '/' | relative_url }}">{{ page }}</a>
     {% else %}

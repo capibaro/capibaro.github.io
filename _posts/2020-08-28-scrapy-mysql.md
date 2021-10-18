@@ -1,33 +1,29 @@
 ---
 layout: post
-title: Scrapy 保存到数据库
-description: connect to mysql database by pymysql to persist data collected by scrapy spider
+title: 数据持久化
+description: persist data using pymysql and pipeline in scrapy spider
+category: Scrapy
 date: 2020-08-28 20:00:39 +0800
-excerpt: 使用 PyMySQL 连接到 MySQL 数据库以持久化爬虫提取的数据
+excerpt: 使用 PyMySQL 和 Pipeline 持久化爬虫提取的数据
 ---
 
-PyMySQL 是基于 [PEP 249](https://www.python.org/dev/peps/pep-0249/) 的纯 Python 实现的 MySQL 客户端程序库。
+PyMySQL 是基于 [PEP 249](https://www.python.org/dev/peps/pep-0249/) ，纯 Python 实现的 MySQL 客户端程序库。
 
 ## 安装 PyMySQL
+
+使用 pip 安装 PyMySQL：
 
 `pip install PyMySQL`
 
 ## 定义数据对象
 
-在 Scrapy 中，`item`类似于字典，是`scrapy.Item`的子类，可以使用简单的类定义语法和`Field`对象来定义。下面在`showspider/items.py`中，定义我们要处理的数据对象：
+在 Scrapy 中，`item`类似于字典。它是`scrapy.Item`的子类，可以使用简单的类定义语法和`Field`对象定义。在`showspider/items.py`中，定义要处理的数据对象：
 
-```
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
-
+```python
 import scrapy
 
 
 class ShowspiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
     id = scrapy.Field()
     title = scrapy.Field()
     url = scrapy.Field()
@@ -38,13 +34,13 @@ class ShowspiderItem(scrapy.Item):
     source = scrapy.Field()
 ```
 
-我们可以注意到 Scrapy Item 的定义类似于 [Django Models](https://docs.djangoproject.com/en/dev/topics/db/models/) ，不过因为没有不同的 field 类型的概念，Scrapy Item 要简单得多。
+可以注意到 Scrapy Item 的定义类似于 [Django Models](https://docs.djangoproject.com/en/dev/topics/db/models/) ，不过因为没有不同的 field 类型的概念，Scrapy Item 要简单得多。
 
 ## 定义数据表
 
 对应于 Scrapy Item ，在 MySQL 数据库中创建相应的数据表。
 
-```
+```sql
 CREATE TABLE `search_show` (
     `id` bigint NOT NULL PRIMARY KEY, 
     `title` longtext NOT NULL, 
@@ -57,22 +53,15 @@ CREATE TABLE `search_show` (
 );
 ```
 
-## 启用流水线
+## 编写流水线
 
 在 Scrapy 中，一个 item 在被爬虫提取出来后，会被送到 Item Pipeline ，在这里它将会被多个流水线按顺序先后处理。
 
-每条流水线都是实现了一个简单方法的 Python 类。它们接收 item 并对其执行操作，并决定其是否应该送入下一条流水线还是丢弃且不再处理。
+每条流水线都是实现了一个简单方法的 Python 类。它们接收 item，对其执行操作，决定是否将其送入下一条流水线或者丢弃且不再处理。
 
 在`showspider/pipelines.py`中编写流水线：
 
-```
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
-# useful for handling different item types with a single interface
+```python
 from itemadapter import ItemAdapter
 
 
@@ -84,8 +73,6 @@ class ShowspiderPipeline:
 在`showspider/settings.py`中启用流水线：
 
 ```
-# Configure item pipelines
-# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'showspider.pipelines.ShowspiderPipeline': 300,
 }
@@ -95,7 +82,7 @@ ITEM_PIPELINES = {
 
 在`ShowspiderPipeline`类的`__init__`方法中连接到MySQL数据库：
 
-```
+```python
 import pymysql.cursors
 from showspider import settings
 
@@ -111,12 +98,11 @@ from showspider import settings
             cursorclass=pymysql.cursors.DictCursor)
 ```
 
-在`showspider/settings.py`配置MySQL的域名、用户、密码和数据库：
+在`showspider/settings.py`配置 MySQL 的域名、用户、密码和数据库：
 
-```
+```python
 import os
 
-# MySQL Connection
 MYSQL_HOST = 'db'
 MYSQL_DATABASE = 'findshow'
 MYSQL_USER = os.environ['MYSQL_USER']
@@ -127,7 +113,7 @@ MYSQL_PASSWORD = os.environ['MYSQL_PASSWORD']
 
 在`ShowspiderPipeline`类的`process_item`方法中持久化数据：
 
-```
+```python
 import logging
 
 ...
@@ -156,8 +142,10 @@ import logging
                     return item
 ```
 
-使用`self.connection.ping(reconnect=True)`保持与数据库的连接。在这里我们根据 id 查找演出是否存在，若存在则更新演出信息，若不存在则插入演出信息。最后使用`conn.commit()`提交执行的修改。
+`self.connection.ping(reconnect=True)`用于保持与数据库的连接。这里我们根据 id 查找演出是否存在，若存在则更新演出信息；若不存在则插入演出信息。最后使用`conn.commit()`提交执行的修改。
 
-- [Items — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/topics/items.html)
-- [Item Pipeline — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/topics/item-pipeline.html)
-- [PyMySQL · PyPI](https://pypi.org/project/PyMySQL/)
+&nbsp;
+
+- [1] [Items — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/topics/items.html)
+- [2] [Item Pipeline — Scrapy 2.5.0 documentation](https://docs.scrapy.org/en/latest/topics/item-pipeline.html)
+- [3] [PyMySQL · PyPI](https://pypi.org/project/PyMySQL/)

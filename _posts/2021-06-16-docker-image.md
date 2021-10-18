@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Docker 构建、运输和运行镜像
-description: use docker to build, ship and run a scrapy spider image
+title: 构建、运输并运行镜像
+description: a tutorial on how to build, ship and run docker image
+category: Docker
 date: 2021-06-16 20:51:17 +0800
-excerpt: 构建、运输和运行 Scrapy 爬虫镜像
+excerpt: 编写 Dockerfile 构建镜像，通过 Dockerhub 运输镜像并运行镜像
 ---
 
 ## 编写 Dockerfile
 
 在你的项目目录下新建`Dockerfile`文件：
 
-```
+```dockerfile
 FROM python:3.8
 ENV PYTHONUNBUFFERED=1
 WORKDIR /code
@@ -72,5 +73,7 @@ docker 会从 Dockerhub 拉取对应的镜像并运行，当然你也可以预�
 
 `docker pull YOUR-USER-NAME/spider`
 
-- [Sample application](https://docs.docker.com/get-started/02_our_app/)
-- [Share the application](https://docs.docker.com/get-started/04_sharing_app/)
+&nbsp;
+
+- [1] [Sample application](https://docs.docker.com/get-started/02_our_app/)
+- [2] [Share the application](https://docs.docker.com/get-started/04_sharing_app/)

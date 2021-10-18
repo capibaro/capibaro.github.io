@@ -1,18 +1,19 @@
 ---
 layout: post
-title: Xv6 环境搭建
-description: install tools for xv6 development
+title: 搭建环境
+description: install tools for xv6 development in virtualbox
+category: Xv6
 date: 2020-12-14 20:13:39 +0800
-excerpt: 使用 VirtualBox 在 Ubuntu 中安装编译 Xv6 开发工具链，并使用 QEMU 运行 Xv6
+excerpt: 使用 VirtualBox 虚拟机下载，安装并编译 Xv6 开发工具链
 ---
 
 ## 安装 VirtualBox
 
-进入 [VirtualBox下载](https://www.virtualbox.org/wiki/Downloads) 页面你所在的平台下载相应的包并安装。
+进入 [VirtualBox 下载](https://www.virtualbox.org/wiki/Downloads) ，根据你所在的平台，下载并安装 VirtualBox。
 
 ## 安装 Ubuntu
 
-进入 [Ubuntu下载](https://cn.ubuntu.com/download/desktop) 下载系统光盘映像。
+进入 [Ubuntu 下载](https://cn.ubuntu.com/download/desktop) 下载系统光盘映像。
 
 在 VirtualBox 中新建一个虚拟机并使用光盘映像安装 Ubuntu 系统。
 
@@ -20,7 +21,7 @@ excerpt: 使用 VirtualBox 在 Ubuntu 中安装编译 Xv6 开发工具链，并�
 
 安装扩展程序`VBoxGuestAdditions`以使用修改分辨率、共享文件夹和共享剪切板等扩展功能。
 
-进入 [下载索引](http://download.virtualbox.org/virtualbox) ，根据 VirtualBox 的版本进入相应页面下载扩展程序的光盘映像`VBoxGuestAdditions_x.x.x.iso`，然后在 VirtualBox 中把它添加到虚拟机。
+进入 [VirtualBox 下载](http://download.virtualbox.org/virtualbox) ，根据 VirtualBox 的版本进入相应页面下载扩展程序的光盘映像`VBoxGuestAdditions_x.x.x.iso`，然后在 VirtualBox 中把它添加到虚拟机。
 
 为了能够编译并安装扩展程序，需要在虚拟机中安装 [gcc](https://gcc.gnu.org/) 和 [make](http://www.gnu.org/software/make/) ：
 
@@ -28,15 +29,11 @@ excerpt: 使用 VirtualBox 在 Ubuntu 中安装编译 Xv6 开发工具链，并�
 
 打开虚拟机任务栏中光盘映像，点击右上角的`Run Software`安装扩展程序。安装完成后重启虚拟机。
 
-使用`视图->虚拟显示屏`可以修改虚拟机分辨率。
+通过`视图->虚拟显示屏`可以修改虚拟机分辨率。
 
-使用`设备->共享剪切板`可以启用共享剪切板。
+通过`设备->共享剪切板`可以启用共享剪切板。
 
-启用共享文件夹要复杂一点。
-
-首先在 VirtualBox 中指定宿主机的共享文件夹路径。
-
-然后在虚拟机中创建共享文件夹
+启用共享文件夹要复杂一点。首先在 VirtualBox 中指定宿主机的共享文件夹路径。然后在虚拟机中创建共享文件夹
 
 `sudo mkdir /mnt/share`
 
@@ -68,7 +65,7 @@ excerpt: 使用 VirtualBox 在 Ubuntu 中安装编译 Xv6 开发工具链，并�
 
 检查是否成功安装：
 
-```
+```shell
 $ riscv64-unknown-elf-gcc --version
 riscv64-unknown-elf-gcc (GCC) 10.1.0
 Copyright (C) 2020 Free Software Foundation, Inc.
@@ -106,8 +103,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 检查是否成功安装：
 
-
-```
+```shell
 $ qemu-system-riscv64 --version
 QEMU emulator version 4.1.0
 Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
@@ -125,7 +121,7 @@ Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
 
 `make qemu`
 
-```
+```shell
 xv6 kernel is booting
 
 virtio disk init 0
@@ -157,4 +153,6 @@ $
 
 `sudo apt install code`
 
-- [6.S081 / Fall 2019](https://pdos.csail.mit.edu/6.828/2019/tools.html)
+&nbsp;
+
+- [1] [6.S081 / Fall 2019](https://pdos.csail.mit.edu/6.828/2019/tools.html)

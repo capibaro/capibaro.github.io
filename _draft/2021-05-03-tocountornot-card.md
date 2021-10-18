@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 爱记不记 账户
+title: 账户
 description: tocountornot card api document
+category: to-count-or-not
+tag: document
 date: 2021-05-03 11:32:51 +0800
 excerpt: 爱记不记账户接口文档
 ---
