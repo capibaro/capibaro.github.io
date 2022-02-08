@@ -4,10 +4,11 @@ title: 提取动态加载的内容
 description: select dynamic loaded content in scrapy spider
 category: Scrapy
 date: 2020-08-29 19:22:22 +0800
-excerpt: 在 Scrapy 中提取网页动态加载内容的几种方式
 ---
 
 当你在浏览器中加载某些网页时，它们会显示你想要的数据。然而，当你用 Scrapy 下载它们时，你却无法使用 [选择器](https://docs.scrapy.org/en/latest/topics/selectors.html#topics-selectors) 来获取这些数据。
+
+<!--more-->
 
 当这种情况发生时，推荐的方法是 [找到数据源](#找到数据源) 并从它们提取数据。
 

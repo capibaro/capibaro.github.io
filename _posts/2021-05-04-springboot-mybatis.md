@@ -4,10 +4,11 @@ title: 对象关系映射
 description: use mybatis to implement object relation mapping in spring boot
 category: SpringBoot
 date: 2021-05-04 19:25:25 +0800
-excerpt: 使用 MyBatis 和 Java 注解完成对象关系映射
 ---
 
 MyBatis 是一个支持自定义 SQL 、存储过程和高级映射的持久层框架，它使用 [XML](https://developer.mozilla.org/zh-CN/docs/Web/XML/XML_introduction) 或者 [注解](https://www.runoob.com/w3cnote/java-annotation.html) 配置对象与关系之间的映射，免除了几乎所有设置参数和获取结果的 [JDBC](https://www.oracle.com/cn/database/technologies/appdev/jdbc.html) 代码。
+
+<!--more-->
 
 ## 引入依赖
 
@@ -184,4 +185,4 @@ public class CardService {
 
 &nbsp;
 
-- [1] [mybatis – MyBatis 3 入门](https://mybatis.org/mybatis-3/zh/getting-started.html)
+- [1] [mybatis – MyBatis 3 \| 入门](https://mybatis.org/mybatis-3/zh/getting-started.html)

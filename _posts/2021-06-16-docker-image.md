@@ -4,8 +4,11 @@ title: 构建、运输并运行镜像
 description: a tutorial on how to build, ship and run docker image
 category: Docker
 date: 2021-06-16 20:51:17 +0800
-excerpt: 编写 Dockerfile 构建镜像，通过 Dockerhub 运输镜像并运行镜像
 ---
+
+这篇博客编写 Dockerfile 构建镜像，通过 Dockerhub 运输镜像并运行镜像
+
+<!--more-->
 
 ## 编写 Dockerfile
 
@@ -75,5 +78,5 @@ docker 会从 Dockerhub 拉取对应的镜像并运行，当然你也可以预�
 
 &nbsp;
 
-- [1] [Sample application](https://docs.docker.com/get-started/02_our_app/)
-- [2] [Share the application](https://docs.docker.com/get-started/04_sharing_app/)
+- [1] [Sample application \| Docker Documentation](https://docs.docker.com/get-started/02_our_app/)
+- [2] [Share the application \| Docker Documentation](https://docs.docker.com/get-started/04_sharing_app/)

@@ -4,8 +4,11 @@ title: 数据模型
 description: configure database, define data model, get familiar with data api and admin page in django
 category: Django
 date: 2020-08-23 19:42:52 +0800
-excerpt: 配置数据库，定义数据模型并熟悉数据库 API 和管理页面
 ---
+
+这篇博客对数据库进行配置，定义数据模型并介绍数据库 API 以及管理页面
+
+<!--more-->
 
 ## 配置数据库
 

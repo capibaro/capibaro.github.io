@@ -4,8 +4,11 @@ title: 安装指南
 description: use pip, venv to install django on wsl
 category: Django
 date: 2020-08-21 19:13:54 +0800
-excerpt: 使用 pip 包管理工具和 venv 虚拟环境在 WSL 中安装 Django
 ---
+
+这篇博客使用 pip 包管理工具和 venv 虚拟环境在 WSL 中安装 Django
+
+<!--more-->
 
 ## 安装 pip
 
@@ -73,5 +76,5 @@ pip 21.1.2 from /home/xiangxin/.local/lib/python3.8/site-packages/pip (python 3.
 
 &nbsp;
 
-- [1] [快速安装指南](https://docs.djangoproject.com/zh-hans/3.2/intro/install/)
-- [2] [如何安装 Django](https://docs.djangoproject.com/zh-hans/3.2/topics/install/#installing-official-release)
+- [1] [快速安装指南 \| Django 文档 \| Django](https://docs.djangoproject.com/zh-hans/3.2/intro/install/)
+- [2] [如何安装 Django \| Django 文档 \| Django](https://docs.djangoproject.com/zh-hans/3.2/topics/install/#installing-official-release)

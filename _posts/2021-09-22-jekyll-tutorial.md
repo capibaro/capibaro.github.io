@@ -4,8 +4,11 @@ title: 基础教程
 description: a tutorial on how to convert markdown text to static blog site in jekyll
 category: Jekyll
 date: 2021-09-22 11:44:58 +0800
-excerpt: 使用 Jekyll 根据 Markdown 文本生成静态博客网站
 ---
+
+Jekyll 是一个基于 Ruby 的静态网站框架，它能够将纯文本转化为静态的网站和博客。这篇博客使用 Jekyll 创建一个简单的静态网站并简要介绍 Ruby 的基本内容。
+
+<!--more-->
 
 ## 快速开始
 

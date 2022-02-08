@@ -4,10 +4,11 @@ title: 接口调用日志
 description: use interceptor to generate api invoke journal in spring boot
 category: SpringBoot
 date: 2021-05-08 20:53:58 +0800
-excerpt: 使用 Interceptor 生成接口调用日志
 ---
 
 在 Spring 中，请求在被控制器处理之前需要经过拦截器的处理。因此，我们可以使用拦截器来生成接口调用日志。
+
+<!--more-->
 
 ## 定义拦截器
 

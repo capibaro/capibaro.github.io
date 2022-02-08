@@ -4,10 +4,11 @@ title: 全文检索
 description: implement full-text search using haystack and elasticsearch in django
 category: Django
 date: 2020-08-24 17:56:33 +0800
-excerpt: 使用 Haystack 对接 Elasticsearch 搜索引擎实现全文检索
 ---
 
 Haystack 为 Django 提供了模块化的搜索，它支持的搜索引擎有 [Solr](http://lucene.apache.org/solr) 、 [Elasticsearch](http://elasticsearch.org/) 、 [Whoosh](http://whoosh.ca/) 以及 [Xapian](http://xapian.org/) 。其中 Elasticsearch 是广受欢迎的开源搜索解决方案。
+
+<!--more-->
 
 ## 安装 Haystack
 
@@ -180,4 +181,4 @@ class ShowIndex(indexes.SearchIndex, indexes.Indexable):
 &nbsp;
 
 - [1] [Getting Started with Haystack — Haystack 2.5.0 documentation](https://django-haystack.readthedocs.io/en/master/tutorial.html)
-- [2] [elasticsearch](https://hub.docker.com/_/elasticsearch)
+- [2] [Elasticsearch - Official Image \| Docker Hub](https://hub.docker.com/_/elasticsearch)

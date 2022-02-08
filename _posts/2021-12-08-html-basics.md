@@ -3,7 +3,7 @@ layout: post
 title: HTML 基础
 description: a basic tutorial on html
 category: Web
-data: 2021-12-8 14:22:36 +0800
+date: 2021-12-8 14:22:36 +0800
 ---
 
 超文本标记语言（HTML, HyperText Markup Language）是用来结构化网页及其内容的代码。具体来说，这些内容可以由一系列段落、一个要点列表或者使用图像和数据表构建而成。这篇文章会简要介绍 HTML 及其用途。
@@ -114,7 +114,7 @@ HTML 是定义网页结构的标记语言。HTML 由一系列元素组成，这�
 1. 他们有视力障碍。有视力障碍的用户通常使用屏幕阅读器朗读作为替代的文字。
 2. 出现错误导致图像无法显示。例如可以试着故意把`src`属性中的路径写错。保存并重新加载页面，应该会在图片的位置看到：
 
-<image src="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics/alt-text-example.png">
+<image src="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics/alt-text-example.png"/>
 
 替代文字的关键在于是描述性的文字。替代文字需要能够向读者提供足够的信息并使其理解图像传达的内容。在这里，目前的文字“My test image”做得并不好。对于 Firefox 的标志来说，一个更好的替代是“The Firefox logo: a flaming fox surrounding the Earth”。
 
@@ -126,7 +126,7 @@ HTML 是定义网页结构的标记语言。HTML 由一系列元素组成，这�
 
 标题元素可以用来指定内容中的特定部分为标题——或子标题。就像书有书名、章节名和小标题一样，HTML 文档也有这样的内容。HTML 包括 6 个标题级别，尽管最常使用的是 3 到 4 个：
 
-```html
+```
 <h1>My main title</h1>
 <h2>My top level heading</h2>
 <h3>My subheading</h3>

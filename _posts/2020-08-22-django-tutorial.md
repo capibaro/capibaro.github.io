@@ -4,8 +4,11 @@ title: 基础教程
 description: a tutorial on django application and view
 category: Django
 date: 2020-08-22 15:17:05 +0800
-excerpt: 创建一个简单 Django 项目，编写应用并定义视图
 ---
+
+这篇博客创建一个简单 Django 项目，编写应用并定义视图
+
+<!--more-->
 
 ## 创建项目
 

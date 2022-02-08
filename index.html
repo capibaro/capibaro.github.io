@@ -4,9 +4,9 @@ layout: default
 
 {% for post in paginator.posts %}
   <h6>{{ post.date | date: '%b %d, %Y' }}</h6>
-  <h3><a href="{{ post.url }}">{{ post.category }}&nbsp{{ post.title}}</a></h3>
+  <h3><a href="{{ post.url }}"><i>{{ post.category }}</i>&nbsp{{ post.title}}</a></h3>
   <div class="excerpt">
-    {{ post.excerpt }}
+    {{ post.excerpt | strip_html }}
   </div>
   <br/>
 {% endfor %}

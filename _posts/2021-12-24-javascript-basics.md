@@ -2,7 +2,7 @@
 layout: post
 title: JavaScript 基础
 description: a basic tutorial on javascript
-category: web
+category: Web
 date: 2021-12-24 16:10:52 +0800
 ---
 
@@ -323,4 +323,4 @@ function setUserName() {
 
 &nbsp;
 
-- [1] [JavaScript basics - Learn web development | MDN](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)
+- [1] [JavaScript basics - Learn web development \| MDN](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)

@@ -4,8 +4,11 @@ title: 搭建环境
 description: install tools for xv6 development in virtualbox
 category: Xv6
 date: 2020-12-14 20:13:39 +0800
-excerpt: 使用 VirtualBox 虚拟机下载，安装并编译 Xv6 开发工具链
 ---
+
+这篇博客使用 VirtualBox 虚拟机下载，安装并编译 Xv6 开发工具链
+
+<!--more-->
 
 ## 安装 VirtualBox
 

@@ -4,8 +4,11 @@ title: 全局异常处理
 description: use controlleradvice to handle exception glabally in spring boot
 category: SpringBoot
 date: 2021-05-06 20:53:41 +0800
-excerpt: 使用 ControllerAdvice 进行全局异常处理
 ---
+
+这篇博客使用 ControllerAdvice 进行全局异常处理
+
+<!--more-->
 
 ## 定义状态码
 

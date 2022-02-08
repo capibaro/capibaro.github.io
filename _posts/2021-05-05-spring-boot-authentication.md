@@ -4,10 +4,11 @@ title: 身份认证
 description: use jwt, interceptor and annonation to implement authentication in spring boot
 category: SpringBoot
 date: 2021-05-05 20:54:28 +0800
-excerpt: 使用 JWT ，Interceptor 和注解实现用户身份认证
 ---
 
 JWT（Json Web Token）是一个开放的行业标准 [RFC7519](https://datatracker.ietf.org/doc/html/rfc7519) 方法，用于在双方之间安全地传递声明。
+
+<!--more-->
 
 ## JWT
 

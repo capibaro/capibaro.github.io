@@ -4,8 +4,11 @@ title: 基础教程
 description: run mysql, elasticsearch service in docker
 category: Docker
 date: 2021-06-16 19:59:50 +0800
-excerpt: 使用 Docker 运行 MySQL，Elasticsearch 服务
 ---
+
+这篇博客使用 Docker 运行 MySQL，Elasticsearch 服务
+
+<!--more-->
 
 ## MySQL
 
@@ -60,5 +63,5 @@ services:
 
 &nbsp;
 
-- [1] [mysql](https://hub.docker.com/_/mysql)
-- [2] [elasticsearch](https://hub.docker.com/_/elasticsearch)
+- [1] [Mysql - Official Image \| Docker Hub](https://hub.docker.com/_/mysql)
+- [2] [Elasticsearch - Official Image \| Docker Hub](https://hub.docker.com/_/elasticsearch)

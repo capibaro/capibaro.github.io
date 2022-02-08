@@ -4,8 +4,11 @@ title: 安装指南
 description: use pip, venv to install scrapy on wsl
 category: Scrapy
 date: 2020-08-25 19:02:08 +0800
-excerpt: 使用 pip 包管理工具和 venv 虚拟环境在 WSL 中安装 Scrapy
 ---
+
+这篇博客使用 pip 包管理工具和 venv 虚拟环境在 WSL 中安装 Scrapy
+
+<!--more-->
 
 ## 安装 pip
 

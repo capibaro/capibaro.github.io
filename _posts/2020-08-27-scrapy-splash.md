@@ -4,10 +4,11 @@ title: JavaScript 渲染
 description: integrate javascript render using splash and lua in scrapy spider
 category: Scrapy
 date: 2020-08-27 17:51:58 +0800
-excerpt: 使用 scrapy-splash 整合 Splash JavaScript 渲染服务
 ---
 
 [Splash](https://github.com/scrapinghub/splash) 是一个提供 HTTP API 的 JavaScript 渲染服务。它是一个带有 HTTP API 的轻量级浏览器，使用 [Twisted](https://twistedmatrix.com/trac/) 和 [Qt](https://www.qt.io/) 在 Python 中实现。
+
+<!--more-->
 
 ## 安装 Splash
 

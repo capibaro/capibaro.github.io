@@ -4,8 +4,11 @@ title: 添加功能
 description: add excerpt, pagination and archive to jekyll blog
 category: Jekyll
 date: 2021-09-24 12:17:23 +0800
-excerpt: 增加文章摘要、目录分页和分类归档
 ---
+
+Jekyll 默认生成的网站比较简陋，这篇博客为 Jekyll 生成的博客网站增加摘要、分页和归档的功能。
+
+<!--more-->
 
 ## 摘要
 
@@ -159,6 +162,6 @@ permalink: /archive/
 
 &nbsp;
 
-- [1] [Posts \| Jekyll • Simple, blog-aware, static sites](https://jekyllrb.com/docs/posts/#post-excerpts)
+- [1] [Posts \| Jekyll • Simple, blog-aware, static sites • post-excerpts](https://jekyllrb.com/docs/posts/#post-excerpts)
 - [2] [Pagination \| Jekyll • Simple, blog-aware, static sites](https://jekyllrb.com/docs/pagination/)
-- [3] [Posts \| Jekyll • Simple, blog-aware, static sites](https://jekyllrb.com/docs/posts/#tags-and-categories)
+- [3] [Posts \| Jekyll • Simple, blog-aware, static sites • tags-and-categories](https://jekyllrb.com/docs/posts/#tags-and-categories)

@@ -4,8 +4,11 @@ title: 参数校验
 description: use hibernate validation to validate  parameter in spring boot
 category: SpringBoot
 date: 2021-05-07 18:53:45 +0800
-excerpt: 使用 Hibernate Validation 进行入参校验
 ---
+
+这篇博客使用 Hibernate Validation 进行入参校验
+
+<!--more-->
 
 ## 引入依赖
 

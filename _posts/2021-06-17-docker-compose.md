@@ -4,8 +4,11 @@ title: 部署应用程序
 description: deploy django application by docker-compose
 category: Docker
 date: 2021-06-17 21:33:37 +0800
-excerpt: 使用 Docker Compose 部署 Django 应用程序
 ---
+
+这篇博客使用 Docker Compose 部署 Django 应用程序
+
+<!--more-->
 
 ## 编写 docker-compose 文件
 
@@ -128,5 +131,5 @@ services:
 
 &nbsp;
 
-- [1] [Quickstart: Compose and Django](https://docs.docker.com/samples/django/)
-- [2] [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
+- [1] [Quickstart: Compose and Django \| Docker Documentation](https://docs.docker.com/samples/django/)
+- [2] [Control startup and shutdown order in Compose \| Docker Documentation](https://docs.docker.com/compose/startup-order/)

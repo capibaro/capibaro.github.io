@@ -4,10 +4,11 @@ title: 数据持久化
 description: persist data using pymysql and pipeline in scrapy spider
 category: Scrapy
 date: 2020-08-28 20:00:39 +0800
-excerpt: 使用 PyMySQL 和 Pipeline 持久化爬虫提取的数据
 ---
 
 PyMySQL 是基于 [PEP 249](https://www.python.org/dev/peps/pep-0249/) ，纯 Python 实现的 MySQL 客户端程序库。
+
+<!--more-->
 
 ## 安装 PyMySQL
 

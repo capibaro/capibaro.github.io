@@ -4,8 +4,11 @@ title: 基础教程
 description: a tutorial on scrapy spider, interactive shell, data scraping, data saving and links following
 category: Scrapy
 date: 2020-08-26 19:19:52 +0800
-excerpt: 创建一个 Scrapy 项目，编写并运行爬虫，提取并保存数据
 ---
+
+这篇博客创建一个 Scrapy 项目，编写并运行爬虫，提取并保存数据
+
+<!--more-->
 
 ## 创建项目
 
