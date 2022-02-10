@@ -22,8 +22,6 @@ title: 卡比巴拉的海
 author: capibaro
 description: Xiang Xin's Blog
 
-url: "https://www.capibaro.ink"
-baseurl: "/blog"
 github_username: capibaro
 
 show_excerpt: true
