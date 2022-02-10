@@ -19,18 +19,24 @@
 # in the templates via {{ site.myvariable }}.
 
 title: 卡比巴拉的海
-author: xiangxin
-description: >
-  在盒子里睡着的美梦
-url: "https://www.capibaro.ink" # the base hostname & protocol for your site, e.g. http://example.com
+author: capibaro
+description: Xiang Xin's Blog
+
+url: "https://www.capibaro.ink"
+baseurl: "/blog"
 github_username: capibaro
+
+show_excerpt: true
+excerpt_separator: <!--more-->
+
 theme: minima
+
 plugins:
   - jekyll-paginate
   - jekyll-seo-tag
+
 paginate: 5
 permalink: /:year/:month/:day/:title
-excerpt_separator: <!--more-->
 
 # Exclude from processing.
 # The following items will not be processed, by default.
