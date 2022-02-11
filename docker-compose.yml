@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  blog:
+    build: .
+    container_name: jekyll
+    command: bundle exec jekyll serve --host=0.0.0.0
+    networks:
+      - network
+    volumes:
+      - .:/blog
+    expose:
+      - "4000"
+    
+
+networks:
+  network:
+    external: true

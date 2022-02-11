@@ -24,6 +24,10 @@ description: Xiang Xin's Blog
 
 github_username: capibaro
 
+url: http://localhost
+baseurl: /blog
+permalink: date
+
 show_excerpt: true
 excerpt_separator: <!--more-->
 
@@ -33,8 +37,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
 
-paginate: 5
-permalink: /:year/:month/:day/:title
+paginate: 10
 
 # Exclude from processing.
 # The following items will not be processed, by default.
