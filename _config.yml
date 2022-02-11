@@ -24,8 +24,8 @@ description: Xiang Xin's Blog
 
 github_username: capibaro
 
-url: http://localhost
-baseurl: /blog
+url: https://capibaro.github.io
+# baseurl: /blog
 permalink: date
 
 show_excerpt: true
